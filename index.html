@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CCEL</title>
+<meta name="description" content="Research group website: research areas, publications and people.">
+<link rel="preload" href="_shared/brand/fonts/S-CoreDream-4Regular.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="_shared/brand/fonts/S-CoreDream-6Bold.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="_shared/scroll/hero_poster.webp" as="image">
+<link rel="stylesheet" href="_shared/brand/brand.css">
+<link rel="stylesheet" href="css/s6.css">
+<script>
+  /* choose the research layout before first paint: horizontal rail only on wide screens with motion allowed */
+  (function () {
+    var d = document.documentElement;
+    if (window.matchMedia('(min-width: 960px) and (min-height: 600px)').matches &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('rail-on');
+  })();
+</script>
+<script src="_shared/content.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/scrub.js" defer></script>
+<script src="js/landing.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-hdr">
+  <div class="hdr-in">
+    <a class="brand" href="index.html"><img class="ccel-logo" src="_shared/img/logo2.png" alt="CCEL logo"></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="members.html">People</a></li>
+        <li><a href="index.html#news">News</a></li>
+        <li><a href="index.html#join">Join Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="hdr-spacer" aria-hidden="true"></div>
+
+<main id="main">
+  <noscript><p class="wrap small" style="padding-top:16px">This site renders its research areas, publications and people from one data file with JavaScript. Please enable JavaScript to see them.</p></noscript>
+  <section class="hero" id="welcome" aria-labelledby="hero-title">
+    <div class="wrap">
+      <p class="eyebrow" id="hero-aff"></p>
+      <h1 id="hero-title"></h1>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p class="identity" id="hero-identity"></p>
+          <p class="intro" id="hero-intro"></p>
+          <ul class="facts" id="facts" aria-label="The lab in numbers"></ul>
+          <p class="hero-links">
+            <a class="btn" href="#research">Research areas</a>
+            <a class="btn" href="publications.html">Publications</a>
+            <a class="btn" href="members.html">People</a>
+          </p>
+        </div>
+        <figure class="plate hero-plate" id="hero-plate">
+          <img class="poster" src="_shared/scroll/hero_poster.webp" alt="" fetchpriority="high">
+          <canvas aria-hidden="true"></canvas>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="research rail" id="research" aria-labelledby="research-title">
+    <div class="rail-stage">
+      <div class="rail-head wrap">
+        <div class="rh-title">
+          <h2 id="research-title">Research</h2>
+          <p class="rh-sub" id="rh-sub"></p>
+        </div>
+        <nav aria-label="Research areas"><ol class="rail-index" id="rail-index"></ol></nav>
+        <div class="rail-progress" aria-hidden="true"><span></span></div>
+      </div>
+      <div class="track" id="track"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="publications" aria-labelledby="sel-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="sel-title">Selected Publications</h2>
+        <a class="more" href="publications.html#selected">Selected and all publications</a>
+      </div>
+      <ol class="sel-list" id="sel-list"></ol>
+
+      <div class="sec-sub"><h3>Recent Highlights</h3><a class="more" href="publications.html">All publications</a></div>
+      <ul class="hl-grid" id="hl-grid"></ul>
+      <details class="rules"><summary>How these two lists are chosen</summary><p id="rules"></p></details>
+
+      <div class="sec-sub"><h3>Journal Covers</h3><a class="more" id="cover-count" href="publications.html#covers">All covers</a></div>
+      <ul class="cover-row" id="cover-row"></ul>
+    </div>
+  </section>
+
+  <section class="sec" id="people" aria-labelledby="people-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="people-title">People</h2>
+        <a class="more" href="members.html">Members and alumni</a>
+      </div>
+      <div class="people-top">
+        <article class="prof" id="prof-card" aria-label="Principal investigator"></article>
+        <figure class="group-photo" id="group-photo"></figure>
+      </div>
+      <div class="member-cols" id="member-cols"></div>
+      <p class="legend"><span><span class="dot c" aria-hidden="true"></span>Computational</span><span><span class="dot e" aria-hidden="true"></span>Experimental</span></p>
+      <p class="alumni-line" id="alumni-line"></p>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="News and open positions">
+    <div class="wrap two-col">
+      <div id="news">
+        <h2>News</h2>
+        <ul class="news-list" id="news-list"></ul>
+      </div>
+      <div id="join" class="join">
+        <h2>Join Us</h2>
+        <p>The lab's current recruitment notice is posted in Korean below.</p>
+        <p id="join-contact"></p>
+        <details class="ko"><summary>Open positions (notice in Korean)</summary><p id="opening-ko" lang="ko"></p></details>
+        <details class="ko"><summary>About the lab (introduction in Korean)</summary><p id="about-ko" lang="ko"></p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <h2 id="contact-title">Contact</h2>
+      <p class="small" id="contact-name" style="margin-top:6px"></p>
+      <dl class="contact-dl" id="contact-dl"></dl>
+    </div>
+  </section>
+</main>
+
+<footer class="site-ftr">
+  <div class="wrap">
+    <p id="ftr-info"></p>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="members.html">People</a></li>
+        <li><a href="index.html#news">News</a></li>
+        <li><a href="index.html#join">Join Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

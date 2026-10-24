@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publications</title>
+<link rel="preload" href="_shared/brand/fonts/S-CoreDream-4Regular.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="_shared/brand/fonts/S-CoreDream-6Bold.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="_shared/brand/brand.css">
+<link rel="stylesheet" href="css/s6.css">
+<script src="_shared/content.js" defer></script>
+<script src="js/common.js" defer></script>
+<script src="js/pubs.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-hdr">
+  <div class="hdr-in">
+    <a class="brand" href="index.html"><img class="ccel-logo" src="_shared/img/logo2.png" alt="CCEL logo"></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="publications.html" aria-current="page">Publications</a></li>
+        <li><a href="members.html">People</a></li>
+        <li><a href="index.html#news">News</a></li>
+        <li><a href="index.html#join">Join Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="hdr-spacer" aria-hidden="true"></div>
+
+<main id="main">
+  <noscript><p class="wrap small" style="padding-top:16px">This site renders its research areas, publications and people from one data file with JavaScript. Please enable JavaScript to see them.</p></noscript>
+  <div class="page-head">
+    <div class="wrap">
+      <h1>Publications</h1>
+      <p id="pub-sub"></p>
+      <ul class="subnav" aria-label="Publication views">
+        <li><a id="tab-all" href="#all">All publications</a></li>
+        <li><a id="tab-selected" href="#selected">Selected</a></li>
+        <li><a id="tab-covers" href="#covers">Journal covers</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="view" id="view-all">
+    <div class="pub-tools">
+      <div class="wrap">
+        <input class="q" id="f-q" type="search" placeholder="Search title, author or journal" aria-label="Search title, author or journal">
+        <select id="f-year" aria-label="Year"></select>
+        <select id="f-status" aria-label="Status"></select>
+        <select id="f-area" aria-label="Research area"></select>
+        <span style="display:flex;gap:12px;align-items:center">
+          <label class="chk"><input type="checkbox" id="f-lab"> Lab-led only</label>
+          <button type="button" class="btn" id="f-reset" style="padding:6px 12px">Reset</button>
+        </span>
+      </div>
+    </div>
+    <div class="wrap" style="padding-bottom:72px">
+      <p class="pub-count" id="pub-count" aria-live="polite"></p>
+      <p class="small" id="no-match" hidden style="margin-top:24px">No entries match these filters.</p>
+      <div id="years"></div>
+    </div>
+  </div>
+
+  <div class="view" id="view-selected" hidden>
+    <section class="sec" id="selected" style="border-top:0;padding-top:40px" aria-labelledby="sel-h">
+      <div class="wrap">
+        <div class="sec-head"><h2 id="sel-h">Selected Publications</h2></div>
+        <ol class="sel-list" id="sel-list"></ol>
+        <div class="sec-sub"><h3>Recent Highlights</h3></div>
+        <ul class="hl-grid" id="hl-list"></ul>
+        <details class="rules"><summary>How these two lists are chosen</summary><p id="sel-rules"></p></details>
+        <div class="sec-sub"><h3>Earlier highlights</h3></div>
+        <ol class="plist plain" id="earlier"></ol>
+      </div>
+    </section>
+  </div>
+
+  <div class="view" id="view-covers" hidden>
+    <section class="sec" id="covers" style="border-top:0;padding-top:40px" aria-labelledby="cov-h">
+      <div class="wrap">
+        <h2 id="cov-h">Journal Covers</h2>
+        <p class="small" id="covers-sub" style="margin-top:6px"></p>
+        <ul class="covers-grid" id="covers-grid"></ul>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-ftr">
+  <div class="wrap">
+    <p id="ftr-info"></p>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="members.html">People</a></li>
+        <li><a href="index.html#news">News</a></li>
+        <li><a href="index.html#join">Join Us</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

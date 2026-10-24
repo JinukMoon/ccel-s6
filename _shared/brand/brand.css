@@ -1,0 +1,17 @@
+/* CCEL brand layer: shared by every candidate and the final site.
+   Font = S-CoreDream (에스코어 드림), the typeface the current ccel.snu.ac.kr already uses (class ks4 etc.).
+   Self-hosted so the IIS site has no CDN dependency. Logo = ../img/logo2.png (data: CCEL.lab.logo), used as-is. */
+@font-face { font-family: 'S-CoreDream'; font-weight: 300; font-style: normal; font-display: swap;
+  src: url('fonts/S-CoreDream-3Light.woff') format('woff'); }
+@font-face { font-family: 'S-CoreDream'; font-weight: 400; font-style: normal; font-display: swap;
+  src: url('fonts/S-CoreDream-4Regular.woff') format('woff'); }
+@font-face { font-family: 'S-CoreDream'; font-weight: 500; font-style: normal; font-display: swap;
+  src: url('fonts/S-CoreDream-5Medium.woff') format('woff'); }
+@font-face { font-family: 'S-CoreDream'; font-weight: 700; font-style: normal; font-display: swap;
+  src: url('fonts/S-CoreDream-6Bold.woff') format('woff'); }
+:root { --ccel-font: 'S-CoreDream', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; }
+
+/* Official logo, unaltered. Put it on .ccel-logo-plate when the header background is dark. */
+.ccel-logo { display: block; height: auto; width: 200px; max-width: 100%; }
+.ccel-logo-plate { display: inline-block; background: #fff; border-radius: 6px; padding: 6px 10px; line-height: 0; }
+@media (max-width: 768px) { .ccel-logo { width: 160px; } }

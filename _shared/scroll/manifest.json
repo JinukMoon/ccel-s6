@@ -1,0 +1,99 @@
+{
+ "version": 1,
+ "placeholder": true,
+ "pattern": "f_{index:03d}.webp",
+ "index_base": 0,
+ "sequences": {
+  "hero": {
+   "dir": "hero",
+   "count": 61,
+   "width": 1280,
+   "height": 704,
+   "fps_hint": 24,
+   "poster": "hero_poster.webp",
+   "description": "Hero: AI-generated clip (Wan 2.2 TI2V-5B, image-to-video from 13.jpeg) with a gentle push-in; catalyst lattice at a water interface, no text.",
+   "mobile": {
+    "dir": "hero_m",
+    "count": 41,
+    "width": 640,
+    "height": 352
+   },
+   "placeholder": false
+  },
+  "area_I": {
+   "dir": "area_I",
+   "count": 61,
+   "width": 704,
+   "height": 704,
+   "fps_hint": 24,
+   "poster": "area_I_poster.webp",
+   "description": "Research I: AI-driven computational materials discovery.",
+   "mobile": {
+    "dir": "area_I_m",
+    "count": 31,
+    "width": 352,
+    "height": 352
+   }
+  },
+  "area_II": {
+   "dir": "area_II",
+   "count": 61,
+   "width": 704,
+   "height": 704,
+   "fps_hint": 24,
+   "poster": "area_II_poster.webp",
+   "description": "Research II: single- and dual-atom catalysts.",
+   "mobile": {
+    "dir": "area_II_m",
+    "count": 31,
+    "width": 352,
+    "height": 352
+   }
+  },
+  "area_III": {
+   "dir": "area_III",
+   "count": 61,
+   "width": 704,
+   "height": 704,
+   "fps_hint": 24,
+   "poster": "area_III_poster.webp",
+   "description": "Research III: oxide interfaces, defects, exsolution.",
+   "mobile": {
+    "dir": "area_III_m",
+    "count": 31,
+    "width": 352,
+    "height": 352
+   }
+  },
+  "area_IV": {
+   "dir": "area_IV",
+   "count": 61,
+   "width": 704,
+   "height": 704,
+   "fps_hint": 24,
+   "poster": "area_IV_poster.webp",
+   "description": "Research IV: electrochemical energy conversion.",
+   "mobile": {
+    "dir": "area_IV_m",
+    "count": 31,
+    "width": 352,
+    "height": 352
+   }
+  },
+  "area_V": {
+   "dir": "area_V",
+   "count": 61,
+   "width": 704,
+   "height": 704,
+   "fps_hint": 24,
+   "poster": "area_V_poster.webp",
+   "description": "Research V: sustainable energy materials, carbon circularity.",
+   "mobile": {
+    "dir": "area_V_m",
+    "count": 31,
+    "width": 352,
+    "height": 352
+   }
+  }
+ }
+}
