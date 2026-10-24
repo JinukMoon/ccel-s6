@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CCEL</title>
-<meta name="description" content="Research group website: research areas, publications and people.">
+<meta name="description" content="Computational Catalysis and Emerging Materials Laboratory, Department of Materials Science and Engineering, Seoul National University.">
 <link rel="preload" href="_shared/brand/fonts/S-CoreDream-4Regular.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="_shared/brand/fonts/S-CoreDream-6Bold.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="_shared/scroll/hero_poster.webp" as="image">
@@ -33,11 +33,11 @@
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>
-        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html" aria-current="page">Welcome</a></li>
+        <li><a href="members.html#professor">Professor</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="research.html">Research</a></li>
         <li><a href="publications.html">Publications</a></li>
-        <li><a href="members.html">People</a></li>
-        <li><a href="index.html#news">News</a></li>
-        <li><a href="index.html#join">Join Us</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
@@ -46,7 +46,7 @@
 <div class="hdr-spacer" aria-hidden="true"></div>
 
 <main id="main">
-  <noscript><p class="wrap small" style="padding-top:16px">This site renders its research areas, publications and people from one data file with JavaScript. Please enable JavaScript to see them.</p></noscript>
+  <noscript><p class="wrap small" style="padding-top:16px">This site renders its content from one data file with JavaScript. Please enable JavaScript to see it.</p></noscript>
   <section class="hero" id="welcome" aria-labelledby="hero-title">
     <div class="wrap">
       <p class="eyebrow" id="hero-aff"></p>
@@ -54,12 +54,10 @@
       <div class="hero-grid">
         <div class="hero-text">
           <p class="identity" id="hero-identity"></p>
-          <p class="intro" id="hero-intro"></p>
-          <ul class="facts" id="facts" aria-label="The lab in numbers"></ul>
           <p class="hero-links">
-            <a class="btn" href="#research">Research areas</a>
+            <a class="btn" href="research.html">Research</a>
             <a class="btn" href="publications.html">Publications</a>
-            <a class="btn" href="members.html">People</a>
+            <a class="btn" href="members.html">Members</a>
           </p>
         </div>
         <figure class="plate hero-plate" id="hero-plate">
@@ -70,17 +68,33 @@
     </div>
   </section>
 
+  <!-- the one scroll moment: five research areas on a horizontal rail (visual, title, keywords only) -->
   <section class="research rail" id="research" aria-labelledby="research-title">
     <div class="rail-stage">
       <div class="rail-head wrap">
         <div class="rh-title">
           <h2 id="research-title">Research</h2>
-          <p class="rh-sub" id="rh-sub"></p>
+          <a class="more" href="research.html">Research areas in detail</a>
         </div>
-        <nav aria-label="Research areas"><ol class="rail-index" id="rail-index"></ol></nav>
+        <nav class="rail-nav" aria-label="Research areas"><ol class="rail-index" id="rail-index"></ol></nav>
         <div class="rail-progress" aria-hidden="true"><span></span></div>
       </div>
       <div class="track" id="track"></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="News and open position">
+    <div class="wrap two-col">
+      <div id="news">
+        <h2>News</h2>
+        <ul class="news-list" id="news-list"></ul>
+      </div>
+      <div id="opening" class="join">
+        <h2>Open Position</h2>
+        <p class="note-ko">Recruitment notice (in Korean)</p>
+        <p class="ko-text" id="opening-ko" lang="ko"></p>
+        <p class="small" id="join-contact"></p>
+      </div>
     </div>
   </section>
 
@@ -88,56 +102,24 @@
     <div class="wrap">
       <div class="sec-head">
         <h2 id="sel-title">Selected Publications</h2>
-        <a class="more" href="publications.html#selected">Selected and all publications</a>
+        <a class="more" href="publications.html#selected">Selected publications and recent highlights</a>
       </div>
-      <ol class="sel-list" id="sel-list"></ol>
-
-      <div class="sec-sub"><h3>Recent Highlights</h3><a class="more" href="publications.html">All publications</a></div>
-      <ul class="hl-grid" id="hl-grid"></ul>
-      <details class="rules"><summary>How these two lists are chosen</summary><p id="rules"></p></details>
-
-      <div class="sec-sub"><h3>Journal Covers</h3><a class="more" id="cover-count" href="publications.html#covers">All covers</a></div>
-      <ul class="cover-row" id="cover-row"></ul>
+      <ol class="sel-compact" id="sel-list"></ol>
     </div>
   </section>
 
-  <section class="sec" id="people" aria-labelledby="people-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="people-title">People</h2>
-        <a class="more" href="members.html">Members and alumni</a>
-      </div>
-      <div class="people-top">
-        <article class="prof" id="prof-card" aria-label="Principal investigator"></article>
-        <figure class="group-photo" id="group-photo"></figure>
-      </div>
-      <div class="member-cols" id="member-cols"></div>
-      <p class="legend"><span><span class="dot c" aria-hidden="true"></span>Computational</span><span><span class="dot e" aria-hidden="true"></span>Experimental</span></p>
-      <p class="alumni-line" id="alumni-line"></p>
-    </div>
-  </section>
-
-  <section class="sec" aria-label="News and open positions">
+  <section class="sec" aria-label="About the lab and contact">
     <div class="wrap two-col">
-      <div id="news">
-        <h2>News</h2>
-        <ul class="news-list" id="news-list"></ul>
+      <div id="about">
+        <h2>About CCEL</h2>
+        <p class="note-ko">Introduction (in Korean)</p>
+        <p class="ko-text" id="about-ko" lang="ko"></p>
       </div>
-      <div id="join" class="join">
-        <h2>Join Us</h2>
-        <p>The lab's current recruitment notice is posted in Korean below.</p>
-        <p id="join-contact"></p>
-        <details class="ko"><summary>Open positions (notice in Korean)</summary><p id="opening-ko" lang="ko"></p></details>
-        <details class="ko"><summary>About the lab (introduction in Korean)</summary><p id="about-ko" lang="ko"></p></details>
+      <div id="contact">
+        <h2>Contact</h2>
+        <p class="small" id="contact-name" style="margin-top:6px"></p>
+        <dl class="contact-dl" id="contact-dl"></dl>
       </div>
-    </div>
-  </section>
-
-  <section class="sec" id="contact" aria-labelledby="contact-title">
-    <div class="wrap">
-      <h2 id="contact-title">Contact</h2>
-      <p class="small" id="contact-name" style="margin-top:6px"></p>
-      <dl class="contact-dl" id="contact-dl"></dl>
     </div>
   </section>
 </main>
@@ -147,11 +129,11 @@
     <p id="ftr-info"></p>
     <nav aria-label="Footer">
       <ul>
-        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html">Welcome</a></li>
+        <li><a href="members.html#professor">Professor</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="research.html">Research</a></li>
         <li><a href="publications.html">Publications</a></li>
-        <li><a href="members.html">People</a></li>
-        <li><a href="index.html#news">News</a></li>
-        <li><a href="index.html#join">Join Us</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>

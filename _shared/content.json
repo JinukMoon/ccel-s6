@@ -85,12 +85,12 @@
    {
     "lang": "ko",
     "src": "pages/vid/ccel_kor.mp4",
-    "poster": "img/thumb_kor.png"
+    "poster": "img/thumb_kor.jpg"
    },
    {
     "lang": "en",
     "src": "pages/vid/ccel_eng.mp4",
-    "poster": "img/thumb_eng.png"
+    "poster": "img/thumb_eng.jpg"
    }
   ]
  },
@@ -187,7 +187,7 @@
     {
      "name": "Jinwoo Hwang",
      "type": "computational",
-     "photo": "img/34/17.png",
+     "photo": "img/34/17.jpg",
      "degrees": [
       "Postdoc Materials Science and Engineering, Seoul National Univ. (2024 ~ current)",
       "PhD Chemical Engineering, POSTECH (2024)",
@@ -946,7 +946,7 @@
     {
      "name": "Yejung Choi (Co-advised by Prof. Jin Kon Kim at POSTECH)",
      "type": "experimental",
-     "photo": "img/34/26.png",
+     "photo": "img/34/26.jpg",
      "degrees": [
       "PhD Chemical Engineering, POSTECH CCEL (2025)",
       "MS Chemical Engineering, POSTECH (2022)",
@@ -989,7 +989,7 @@
     {
      "name": "Kyu In Shim",
      "type": "computational",
-     "photo": "img/34/16.png",
+     "photo": "img/34/16.jpg",
      "degrees": [
       "Postdoc Materials Science and Engineering, Seoul National Univ. CCEL (2024)",
       "PhD Environmental Science and Engr., POSTECH CCEL (2024)",
@@ -1010,7 +1010,7 @@
     {
      "name": "Chaesung Lim",
      "type": "computational",
-     "photo": "img/34/10.png",
+     "photo": "img/34/10.jpg",
      "degrees": [
       "Postdoc Materials Science and Engineering, Seoul National Univ. CCEL (2024)",
       "PhD Chemical Engineering, POSTECH CCEL (2023)",
@@ -1032,7 +1032,7 @@
     {
      "name": "Myeong Gon Jang",
      "type": "experimental",
-     "photo": "img/34/11.png",
+     "photo": "img/34/11.jpg",
      "degrees": [
       "Postdoc Materials Science and Engineering, Seoul National Univ. CCEL (2024)",
       "PhD Chemical Engineering, POSTECH CCEL (2023)",
@@ -1054,7 +1054,7 @@
     {
      "name": "Hyeonjung Jung",
      "type": "computational",
-     "photo": "img/34/15.png",
+     "photo": "img/34/15.jpg",
      "degrees": [
       "Postdoc Materials Science and Engineering, Seoul National Univ. CCEL (2023)",
       "PhD Chemical Engineering, POSTECH CCEL (2023)",
@@ -1075,7 +1075,7 @@
     {
      "name": "Dongjae Shin",
      "type": "computational",
-     "photo": "img/34/9.png",
+     "photo": "img/34/9.jpg",
      "degrees": [
       "Postdoc Materials Science and Engineering, Seoul National Univ. CCEL (2023)",
       "PhD Chemical Engineering, POSTECH CCEL (2023)",
@@ -1119,7 +1119,7 @@
     {
      "name": "Kyung-Jong Noh",
      "type": "experimental",
-     "photo": "img/34/5.png",
+     "photo": "img/34/5.jpg",
      "degrees": [
       "PhD Chemical Engineering, POSTECH CCEL (2023)",
       "MS Nanotechnology and Advanced Materials Engineering, Sejong Univ. (2012)"
@@ -1139,7 +1139,7 @@
     {
      "name": "Ara Cho",
      "type": "computational",
-     "photo": "img/34/7.png",
+     "photo": "img/34/7.jpg",
      "degrees": [
       "PhD Chemical Engineering, POSTECH CCEL (2022)",
       "MS Chemical Engineering, Univ. of Seoul CCEL (2018)",
@@ -1160,7 +1160,7 @@
     {
      "name": "Rui Huang",
      "type": "experimental",
-     "photo": "img/34/6.png",
+     "photo": "img/34/6.jpg",
      "degrees": [
       "PhD Chemical Engineering, POSTECH CCEL (2022)",
       "MS Chemical Engineering, Univ. of Seoul (2011)",
@@ -1181,7 +1181,7 @@
     {
      "name": "Kyeounghak Kim",
      "type": "computational",
-     "photo": "img/img_alumni/a8.PNG",
+     "photo": "img/img_alumni/a8.jpg",
      "degrees": [
       "Postdoc Chemical Engineering, POSTECH CCEL (2021)",
       "PhD Chemical Engineering, POSTECH CCEL (2021)",
@@ -1208,7 +1208,7 @@
     {
      "name": "Heejae Yang",
      "type": "computational",
-     "photo": "img/34/24.png",
+     "photo": "img/34/24.jpg",
      "degrees": [
       "MS Chemical Engineering, POSTECH CCEL (2024)",
       "BS Chemical Engineering, Univ. of Seoul (2021)"
@@ -1228,7 +1228,7 @@
     {
      "name": "Jihyeon Song",
      "type": "experimental",
-     "photo": "img/34/23.png",
+     "photo": "img/34/23.jpg",
      "degrees": [
       "MS Environmental Science and Engr., POSTECH CCEL (2023)",
       "BS Environmental Engineering, Kyungpook National Univ. (2021)"
@@ -1248,7 +1248,7 @@
     {
      "name": "Jae Yul Lim",
      "type": "computational",
-     "photo": "img/img_alumni/a6.PNG",
+     "photo": "img/img_alumni/a6.jpg",
      "degrees": [
       "MS Chemical Engineering, Univ. of Seoul CCEL (2019)",
       "BS Chemical Engineering, Hoseo Univ. (2017)"
@@ -1268,7 +1268,7 @@
     {
      "name": "Bohyun Hwang",
      "type": "computational",
-     "photo": "img/img_alumni/a4.PNG",
+     "photo": "img/img_alumni/a4.jpg",
      "degrees": [
       "MS Chemical Engineering, Univ. of Seoul CCEL (2017)",
       "BS Astronomy, Chungnam National Univ. (2014)"
@@ -1310,7 +1310,7 @@
     {
      "name": "Jeonghyun Ko",
      "type": "computational",
-     "photo": "img/img_alumni/a2.PNG",
+     "photo": "img/img_alumni/a2.jpg",
      "degrees": [
       "PhD Chemical and Biomolecular Engineering, University of Notre Dame (2021)",
       "MS Chemical Engineering, Univ. of Seoul CCEL (2016)",
@@ -1331,7 +1331,7 @@
     {
      "name": "Ho Seong Song",
      "type": "computational",
-     "photo": "img/img_alumni/a1.PNG",
+     "photo": "img/img_alumni/a1.jpg",
      "degrees": [
       "MS Chemical Engineering, Univ. of Seoul CCEL (2016)",
       "BS Chemical Engineering, Univ. of Seoul CCEL (2013)"
@@ -1378,7 +1378,7 @@
     {
      "name": "Matthew T. Curnan",
      "type": "computational",
-     "photo": "img/34/2.png",
+     "photo": "img/34/2.jpg",
      "degrees": [
       "Research Professor Chemical Engineering, POSTECH CCEL (2023)",
       "Postdoc Chemical Engineering, Univ. of Pittsburgh, USA (2018)",
@@ -1405,7 +1405,7 @@
     {
      "name": "Tae Yong Kim",
      "type": "experimental",
-     "photo": "img/34/4.png",
+     "photo": "img/34/4.jpg",
      "degrees": [
       "Postdoc Materials Science and Engineering, Seoul National Univ. CCEL (2024)",
       "Postdoc / Research Professor Chemical Engineering, POSTECH CCEL (2023)",
@@ -1428,7 +1428,7 @@
     {
      "name": "Kakali Maiti",
      "type": "experimental",
-     "photo": "img/34/3.png",
+     "photo": "img/34/3.jpg",
      "degrees": [
       "Postdoc Chemical Engineering, POSTECH CCEL (2023)",
       "PhD BIN Convergence Technology, Chonbuk National Univ. (2018)",
@@ -1450,7 +1450,7 @@
     {
      "name": "Ying Wang",
      "type": "experimental",
-     "photo": "img/img_alumni/a9.PNG",
+     "photo": "img/img_alumni/a9.jpg",
      "degrees": [
       "Postdoc Chemical Engineering, POSTECH CCEL (2021)",
       "PhD Materials Science and Engineering, Jilin Univ. (2020)",
@@ -1472,7 +1472,7 @@
     {
      "name": "Ismail Ibrahim",
      "type": "computational",
-     "photo": "img/img_alumni/a7.PNG",
+     "photo": "img/img_alumni/a7.jpg",
      "degrees": [
       "Postdoc Chemical Engineering, POSTECH CCEL (2020)",
       "PhD Chemistry, Comenius Univ. in Bratislava (2015)",
@@ -1494,7 +1494,7 @@
     {
      "name": "Suman K. Sahoo",
      "type": "computational",
-     "photo": "img/img_alumni/a5.PNG",
+     "photo": "img/img_alumni/a5.jpg",
      "degrees": [
       "Postdoc Chemical Engineering, POSTECH CCEL (2019)",
       "PhD Chemistrty, Visva-Bharati Univ. (2015)",
@@ -1535,7 +1535,7 @@
      "Active Learning",
      "Catalyst Informatics"
     ],
-    "image": "img/research_ai_discovery.png"
+    "image": "img/research_ai_discovery.jpg"
    },
    {
     "numeral": "II",
@@ -1548,7 +1548,7 @@
      "Oxygen Reduction",
      "Nanozymes"
     ],
-    "image": "img/research_atom_catalysts.png"
+    "image": "img/research_atom_catalysts.jpg"
    },
    {
     "numeral": "III",
@@ -1561,7 +1561,7 @@
      "Interface Engineering",
      "Defect Chemistry"
     ],
-    "image": "img/research_oxide_interfaces.png"
+    "image": "img/research_oxide_interfaces.jpg"
    },
    {
     "numeral": "IV",
@@ -1575,7 +1575,7 @@
      "rSOC",
      "Electrocatalysis"
     ],
-    "image": "img/research_electrochemical_conversion.png"
+    "image": "img/research_electrochemical_conversion.jpg"
    },
    {
     "numeral": "V",
@@ -1588,7 +1588,7 @@
      "Methane Conversion",
      "Biomass Valorization"
     ],
-    "image": "img/research_sustainable_energy.png"
+    "image": "img/research_sustainable_energy.jpg"
    }
   ],
   "sponsors": [
@@ -1596,7 +1596,7 @@
    "img/spon/1.png",
    "img/spon/2.png",
    "img/spon/3.jpg",
-   "img/spon/sol.png",
+   "img/spon/sol.jpg",
    "img/spon/4.JPG",
    "img/spon/6.jpg",
    "img/spon/7.png",

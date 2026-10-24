@@ -105,12 +105,18 @@
 
   function init() {
     if (!D.lab) return;
-    document.title = 'People — ' + (D.lab.short || '');
+    document.title = 'Members — ' + (D.lab.short || '');
     var nm = S.countPeople(D.members), na = S.countPeople(D.alumni);
     $('#people-sub').textContent = nm + ' current members and ' + na + ' alumni of the ' + (D.lab.name || '') + '.';
     renderProfessor();
     $('#members-groups').innerHTML = groupsHtml(D.members, false, 'm');
     $('#alumni-groups').innerHTML = groupsHtml(D.alumni, true, 'a');
+    // group photo (moved here from the landing page's people preview in v5)
+    var gp = D.contact && D.contact.group_photo;
+    if (gp) {
+      $('#group-photo').innerHTML = '<div class="ph"><img loading="lazy" decoding="async" src="' + esc(S.img(gp)) + '" alt="' + esc((D.lab.short || '') + ' group photo') + '"></div>' +
+        '<figcaption>' + esc(D.lab.name || '') + '</figcaption>';
+    } else $('#group-photo').remove();
     initFilter();
     S.initHeader();
     S.initFooter();

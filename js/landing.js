@@ -6,7 +6,6 @@
   var S = window.S6, D = S.D, esc = S.esc, $ = S.$;
   var root = document.documentElement;
   var cur = D.curation || {};
-  var pubs = D.publications || [];
   var areas = S.areas;
   var N = areas.length;
 
@@ -14,136 +13,64 @@
   var railMQ = window.matchMedia('(min-width: 960px) and (min-height: 600px)');
 
   /* ------------------------------------------------------------------ render */
-  function publishedCount(filter) {
-    return pubs.filter(function (p) { return p.status === 'published' && (!filter || filter(p)); }).length;
-  }
-
-  // 1-2 key papers per area, taken only from the curation lists: pins for that area first,
-  // then recent highlights whose area matches. If neither has one, the newest published paper of the area (data order).
-  function keyPapers(numeral) {
-    var out = [];
-    (cur.selected_pins || []).forEach(function (pin) {
-      var p = S.byNo[pin.no];
-      if (p && pin.area === numeral && out.indexOf(p) < 0) out.push(p);
-    });
-    (cur.recent_highlights || []).forEach(function (no) {
-      var p = S.byNo[no];
-      if (p && p.area === numeral && out.indexOf(p) < 0) out.push(p);
-    });
-    if (!out.length) {
-      for (var i = 0; i < pubs.length; i++) if (pubs[i].area === numeral && pubs[i].status === 'published') { out.push(pubs[i]); break; }
-    }
-    return out.slice(0, 2);
-  }
-
+  // v5 lean landing: identity, the research rail (visual + title + one keyword line per area), news,
+  // open position, the six pinned papers as a compact list, the Korean introduction, contact.
+  // No counts anywhere on this page; the full research text lives on research.html.
   function renderHero() {
-    var lab = D.lab || {}, r = D.research || {};
+    var lab = D.lab || {}, w = D.welcome || {};
     document.title = (lab.short || '') + ' — ' + (lab.name || '');
     $('#hero-aff').textContent = lab.affiliation || '';
     $('#hero-title').textContent = lab.name || '';
-    $('#hero-identity').textContent = r.headline || D.welcome.tagline || '';
-    $('#hero-intro').textContent = (r.intro && r.intro[0]) || '';
-    var facts = [
-      [publishedCount(), 'published papers'],
-      [N, 'research areas'],
-      [S.countPeople(D.members), 'current members'],
-      [S.countPeople(D.alumni), 'alumni']
-    ];
-    $('#facts').innerHTML = facts.map(function (f) { return '<li><b>' + esc(f[0]) + '</b><span>' + esc(f[1]) + '</span></li>'; }).join('');
+    $('#hero-identity').textContent = w.tagline || '';
   }
 
   function renderResearch() {
-    var r = D.research || {};
-    $('#rh-sub').textContent = (r.intro && r.intro[1]) || '';
     $('#rail-index').innerHTML = areas.map(function (a, i) {
       return '<li><a href="#area-' + esc(a.numeral) + '" data-i="' + i + '" title="' + esc(a.title) + '"><span class="n">' + esc(a.numeral) +
         '</span><span class="l">' + esc(a.title) + '</span></a></li>';
     }).join('');
     $('#track').innerHTML = areas.map(function (a, i) {
-      var n = esc(a.numeral);
-      var kp = keyPapers(a.numeral);
-      var count = publishedCount(function (p) { return p.area === a.numeral; });
+      var n = esc(a.numeral), more = 'research.html#area-' + n;
       return '<article class="panel" id="area-' + n + '" data-i="' + i + '" aria-labelledby="area-' + n + '-t">' +
-        '<div class="p-side">' +
-          '<figure class="plate p-fig"><img class="poster" alt="Illustration for research area ' + n + ': ' + esc(a.title) + '" decoding="async">' +
+        '<figure class="plate p-fig"><img class="poster" alt="Illustration for research area ' + n + ': ' + esc(a.title) + '" decoding="async">' +
           '<canvas aria-hidden="true"></canvas></figure>' +
-          '<ul class="kw" aria-label="Keywords">' + (a.keywords || []).map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul>' +
-          '<a class="p-all" href="publications.html?area=' + n + '&amp;status=published">All ' + count + ' published papers in area ' + n + '</a>' +
-        '</div>' +
         '<div class="p-main">' +
           '<p class="p-label">Research area ' + n + '</p>' +
-          '<h3 id="area-' + n + '-t">' + esc(a.title) + '</h3>' +
-          '<p class="p-sum">' + S.rich(S.areaSummary(a)) + '</p>' +
-          (kp.length ? '<p class="p-papers-h">Key ' + (kp.length > 1 ? 'papers' : 'paper') + '</p><ol class="p-papers">' +
-            kp.map(function (p) { return '<li>' + S.citeHtml(p) + '</li>'; }).join('') + '</ol>' : '') +
+          '<h3 id="area-' + n + '-t"><a href="' + more + '">' + S.rich(a.title) + '</a></h3>' +
+          '<p class="p-line">' + (a.keywords || []).map(esc).join(' · ') + '</p>' +
+          '<a class="p-more" href="' + more + '">Summary and key papers</a>' +
         '</div></article>';
     }).join('');
   }
 
-  function coverImg(c, p, cls) {
-    var alt = p ? 'Journal cover: ' + S.plain(p.title) : 'Journal cover';
-    return '<a class="' + cls + '" href="' + esc(S.paperUrl(p) || S.https(c.url)) + '" target="_blank" rel="noopener">' +
-      '<img loading="lazy" decoding="async" src="' + esc(S.img(c.image)) + '" alt="' + esc(alt) + '"></a>';
-  }
-
-  function renderPublications() {
-    var pins = (cur.selected_pins || []).map(function (pin) { return { p: S.byNo[pin.no], area: pin.area }; })
-      .filter(function (x) { return x.p; });
-    $('#sel-list').innerHTML = pins.map(function (x) {
-      var a = S.areaBy[x.area];
-      var cv = S.frontCover(x.p);
-      return '<li><div class="sel-area">' + (a ? '<span class="n">Area ' + esc(a.numeral) + '</span>' + esc(a.title) : '') + '</div>' +
-        S.citeHtml(x.p) + (cv ? coverImg(cv, x.p, 'cover-thumb') : '<span></span>') + '</li>';
-    }).join('');
-    var hl = (cur.recent_highlights || []).map(function (no) { return S.byNo[no]; }).filter(Boolean);
-    $('#hl-grid').innerHTML = hl.map(function (p) {
-      var cv = S.frontCover(p);
-      return '<li class="' + (cv ? '' : 'no-cover') + '">' + S.citeHtml(p, { area: true }) + (cv ? coverImg(cv, p, 'cover-thumb') : '') + '</li>';
-    }).join('');
-    $('#rules').textContent = cur.rules || '';
-    if (cur.updated_at) $('#rules').insertAdjacentHTML('beforeend', ' <span>(Last updated ' + esc(cur.updated_at) + '.)</span>');
-    var fronts = (D.cover_publications || []).filter(function (c) { return c.kind === 'front'; });
-    $('#cover-count').textContent = 'All ' + (D.cover_publications || []).length + ' covers';
-    $('#cover-row').innerHTML = fronts.slice(0, 6).map(function (c) {
-      var p = c._no != null ? S.byNo[c._no] : null;
-      var cap = p ? (p.journal || '') + ' (' + p.year + ')' : '';
-      return '<li><a href="' + esc(p ? S.paperUrl(p) : S.https(c.url)) + '" target="_blank" rel="noopener"><span class="cv">' +
-        '<img loading="lazy" decoding="async" src="' + esc(S.img(c.image)) + '" alt="' + esc(p ? 'Journal cover: ' + S.plain(p.title) : 'Journal cover') + '"></span>' +
-        (cap ? '<span class="cap">' + esc(cap) + '</span>' : '') + '</a></li>';
-    }).join('');
-  }
-
-  function renderPeople() {
-    var pr = D.professor || {};
-    $('#prof-card').innerHTML = (pr.photo ? '<img loading="lazy" src="' + esc(S.img(pr.photo)) + '" alt="' + esc(pr.name) + '">' : '') +
-      '<div><h3>' + esc(pr.name) + '</h3>' +
-      '<p class="role">' + esc(pr.title || '') + '</p>' +
-      (pr.roles || []).map(function (r) { return '<p class="role">' + esc(r) + '</p>'; }).join('') +
-      (pr.email ? '<a class="mail" href="mailto:' + esc(pr.email) + '">' + esc(pr.email) + '</a>' : '') +
-      S.profLinks(pr) +
-      '<p style="margin-top:10px"><a class="more" href="members.html#professor">Profile, education and experience</a></p></div>';
-    var gp = D.contact && D.contact.group_photo;
-    if (gp) {
-      $('#group-photo').innerHTML = '<div class="ph"><img loading="lazy" decoding="async" src="' + esc(S.img(gp)) + '" alt="' + esc((D.lab.short || '') + ' group photo') + '"></div>' +
-        '<figcaption>' + esc(D.lab.name) + '</figcaption>';
-    }
-    $('#member-cols').innerHTML = (D.members || []).map(function (g) {
-      return '<div><h3>' + esc(g.group) + ' <span>' + g.people.length + '</span></h3><ul>' + g.people.map(function (p) {
-        var nm = S.splitName(p.name);
-        return '<li>' + S.typeDot(p.type) + '<span>' + esc(nm.name) + '</span>' + S.linksHtml(nm.name, p.links) + '</li>';
-      }).join('') + '</ul></div>';
-    }).join('');
-    $('#alumni-line').innerHTML = esc(S.countPeople(D.alumni)) + ' alumni are listed with their current positions. ' +
-      '<a class="more" href="members.html#alumni">Alumni</a>';
-  }
-
-  function renderNewsJoinContact() {
-    var w = D.welcome || {}, c = D.contact || {}, pr = D.professor || {};
+  function renderNewsOpening() {
+    var w = D.welcome || {}, pr = D.professor || {};
     $('#news-list').innerHTML = (w.news || []).map(function (n) {
-      return '<li>' + (n.date ? '<span class="small">' + esc(n.date) + '</span> ' : '') + esc(n.text) + '</li>';
+      return '<li>' + (n.date ? '<span class="small">' + esc(n.date) + '</span> ' : '') + S.rich(n.text) + '</li>';
     }).join('');
-    $('#join-contact').innerHTML = 'Contact ' + esc(pr.name) + ' at <a href="mailto:' + esc(pr.email) + '">' + esc(pr.email) + '</a>.';
     $('#opening-ko').textContent = w.opening_ko || '';
+    $('#join-contact').innerHTML = pr.email ? 'Contact ' + esc(pr.name) + ': <a href="mailto:' + esc(pr.email) + '">' + esc(pr.email) + '</a>' : '';
+  }
+
+  // the professor's pins in order: title, one journal line, DOI (full citations are on publications.html#selected)
+  function renderSelected() {
+    $('#sel-list').innerHTML = (cur.selected_pins || []).map(function (pin) {
+      var p = S.byNo[pin.no];
+      if (!p) return '';
+      var a = S.areaBy[pin.area], url = S.paperUrl(p);
+      var t = S.rich(p.title);
+      return '<li>' +
+        (a ? '<p class="sc-area"><span class="n">' + esc(a.numeral) + '</span>' + esc(a.title) + '</p>' : '') +
+        '<p class="sc-t">' + (url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + t + '</a>' : t) + '</p>' +
+        '<p class="sc-src">' + esc(S.sourceText(p)) + '</p>' +
+        (p.doi ? '<a class="doi" href="https://doi.org/' + esc(p.doi) + '" target="_blank" rel="noopener">doi:' + esc(p.doi) + '</a>'
+          : url ? '<a class="doi" href="' + esc(url) + '" target="_blank" rel="noopener">Article link</a>' : '') +
+        '</li>';
+    }).join('');
+  }
+
+  function renderAboutContact() {
+    var w = D.welcome || {}, c = D.contact || {};
     $('#about-ko').textContent = w.about_ko || '';
     var rows = [['Address', c.address], ['Email', c.email ? '<a href="mailto:' + esc(c.email) + '">' + esc(c.email) + '</a>' : ''],
       ['Professor office', c.professor_office], ['Laboratory', c.laboratory], ['Student office', c.student_office]];
@@ -162,7 +89,9 @@
     seqs: [], painters: [], near: false
   };
   var HOLD0 = 0.04, HOLD1 = 0.08; // short holds on panel I and panel V
+  var STEP_VH = 60;               // vertical scroll per panel: rail = 100 + 4 x 60 = 340vh
   var motion = false, mobileFrames = false, man = null, scrolledOnce = false;
+  var inView = new Set();   // list-mode cards near the viewport (frames start after the first scroll)
 
   function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
   function ease(t) { return 0.35 * t + 0.65 * t * t * (3 - 2 * t); }
@@ -181,26 +110,21 @@
     var W = rail.W = root.clientWidth;
     var narrow = W < 1200;
     var pad = Math.max(40, Math.round((W - 1280) / 2 + 40));
-    var pw = Math.min(1080, Math.round(W * (narrow ? 0.86 : 0.78)));
+    var pw = Math.min(1040, Math.round(W * (narrow ? 0.84 : 0.74)));
     tr.style.setProperty('--padL', pad + 'px');
     tr.style.setProperty('--padR', pad + 'px');
     tr.style.setProperty('--pw', pw + 'px');
-    rail.el.style.setProperty('--rail-h', (100 + (N - 1) * 70) + 'vh');
-    // figure size: square, as tall as the panel allows, leaving room for keywords and the area link
+    rail.el.style.setProperty('--rail-h', (100 + (N - 1) * STEP_VH) + 'vh');
+    // figure: square, as tall as the panel allows, leaving the text column at least ~300px
     var inner = rail.panels[0].clientHeight - 48;
-    var fig = Math.floor(Math.min(inner - 120, pw * (narrow ? 0.4 : 0.44)));
+    var fig = Math.max(200, Math.floor(Math.min(inner, pw - 48 - 32 - 300)));
     tr.style.setProperty('--fig', fig + 'px');
-    var over = 0;
-    rail.panels.forEach(function (pn) { var sd = pn.querySelector('.p-side'); over = Math.max(over, sd.scrollHeight - sd.clientHeight); });
-    if (over > 0) tr.style.setProperty('--fig', Math.max(200, fig - over - 4) + 'px');
-    // fit the text column: compact type, then one key paper, then clamp author lists
+    // the text column holds only label, title, one keyword line and a link; smaller type if a short screen needs it
     var fits = true;
     rail.panels.forEach(function (pn) {
-      pn.classList.remove('compact', 'one-paper', 'tight');
+      pn.classList.remove('compact');
       var m = pn.querySelector('.p-main');
-      ['compact', 'one-paper', 'tight'].forEach(function (cls) {
-        if (m.scrollHeight > m.clientHeight + 1) pn.classList.add(cls);
-      });
+      if (m.scrollHeight > m.clientHeight + 1) pn.classList.add('compact');
       if (m.scrollHeight > m.clientHeight + 1) fits = false;
     });
     // key translate per panel: centred, clamped to the track ends (I starts left, V ends right)
@@ -218,7 +142,7 @@
     if (rail.on && !fitRail()) { rail.on = false; root.classList.remove('rail-on'); }
     if (!rail.on) {
       rail.track.style.transform = '';
-      rail.panels.forEach(function (pn) { pn.classList.remove('compact', 'one-paper', 'tight'); });
+      rail.panels.forEach(function (pn) { pn.classList.remove('compact'); });
     }
     var rr = rail.el.getBoundingClientRect();
     rail.top = rr.top + window.scrollY;
@@ -260,6 +184,8 @@
     if (!scrolledOnce && window.scrollY > 4) {
       scrolledOnce = true;
       if (hero.seq) hero.seq.loadAll();
+      // list mode: cards that were already in view at load start their frames now
+      if (!rail.on) inView.forEach(function (i) { ensureSeq(i, true); });
     }
     if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; update(); }); }
   }
@@ -276,7 +202,8 @@
       setActive(Math.round(s));
       // area frames start only once the rail is coming up: current panel in full, the next one as keyframes
       var near = rail.top - y < vh * 0.9 && y < rail.top + rail.el.offsetHeight;
-      if (near && man) {
+      // (the lean hero puts the rail top inside the first screen, so wait for the visitor's first scroll)
+      if (near && man && scrolledOnce) {
         for (var i = 0; i < N; i++) {
           if (s >= i - 0.6) ensureSeq(i, true);
           else if (s >= i - 1.6) ensureSeq(i, false);
@@ -367,7 +294,9 @@
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (ents) {
           ents.forEach(function (en) {
-            if (en.isIntersecting && !rail.on) ensureSeq(+en.target.getAttribute('data-i'), true);
+            var i = +en.target.getAttribute('data-i');
+            if (en.isIntersecting) inView.add(i); else inView.delete(i);
+            if (en.isIntersecting && !rail.on && scrolledOnce) ensureSeq(i, true);
           });
         }, { rootMargin: '300px 0px' });
         rail.panels.forEach(function (pn) { io.observe(pn); });
@@ -390,9 +319,9 @@
     if (!D.lab) return;
     renderHero();
     renderResearch();
-    renderPublications();
-    renderPeople();
-    renderNewsJoinContact();
+    renderNewsOpening();
+    renderSelected();
+    renderAboutContact();
     S.initHeader();
     S.initFooter();
     initStage();
