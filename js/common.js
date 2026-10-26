@@ -196,7 +196,7 @@
     STATUS: STATUS, PENDING: PENDING, byNo: byNo, areas: areas, areaBy: areaBy,
     areaSummary: areaSummary, coverOf: coverOf, frontCover: frontCover, paperUrl: paperUrl,
     authorsHtml: authorsHtml, sourceText: sourceText, ifHtml: ifHtml, citeHtml: citeHtml,
-    splitName: splitName, linksHtml: linksHtml, profLinks: profLinks, typeDot: typeDot, countPeople: countPeople,
+    splitName: splitName, linksHtml: linksHtml, profLinks: profLinks, ICONS: ICONS, typeDot: typeDot, countPeople: countPeople,
     initHeader: initHeader, initFooter: initFooter, settleHash: settleHash
   };
 })();
